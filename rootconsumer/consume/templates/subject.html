@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Subject page</title>
+</head>
+<body>
+
+<h1> Subject Page invoked...!</h1>
+
+<form action="http://localhost:8001/subjsave/" method="post">
+    {% csrf_token %}
+    <label>Dept Id</label>
+    <input type="text" name="id" value="{{subjob.id}}"> <br><br>
+
+    <label>Subject Name</label>
+    <input type="text" name="sname" value="{{subjob.sname}}"> <br><br>
+
+    <label>Subject code</label>
+    <input type="text" name="scode" value="{{subjob.scode}}"> <br><br>
+
+    <label>Subject Remarks</label>
+    <input type="text" name="sremarks" value="{{subjob.sremarks}}"> <br><br>
+
+    <input type="submit" name="Submit">
+</form>
+
+    <table>
+            <thead>
+            <td>ID</td>
+            <td>Name</td>
+            <td>scode</td>
+            <td>Remarks</td>
+            <td>Action</td>
+            </thead>
+        {% for item in listOfSubj %}
+                <tr>
+                    <td>{{item.id}}</td>
+                    <td>{{item.sname}}</td>
+                    <td>{{item.scode}}</td>
+                    <td>{{item.sremarks}}</td>
+                    <td>
+            <a href="/editsubj/{{item.id}}">Edit</a>
+            <a href="/deletesubj/{{item.id}}">Delete</a>
+        </td>
+
+                </tr>
+        {% endfor %}
+
+    </table>
+
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>dept page</title>
+</head>
+<body>
+
+<h1> Dept Page invoked...!</h1>
+
+
+<form action="http://localhost:8001/save/" method="post">
+    {% csrf_token %}
+    <label>Dept Id</label>
+    <input type="text" name="id" value="{{deptob.id}}"> <br><br>
+
+    <label>Dept Name</label>
+    <input type="text" name="dname" value="{{deptob.dname}}"> <br><br>
+
+    <label>Dept Professor</label>
+    <input type="text" name="dprof" value="{{deptob.dprof}}"> <br><br>
+
+    <label>Dept Code</label>
+    <input type="text" name="dcode" value="{{deptob.dcode}}"> <br><br>
+
+    <input type="submit" name="Submit">
+</form>
+
+    <table>
+            <thead>
+            <td>ID</td>
+            <td>Name</td>
+            <td>Code</td>
+            <td>Prof</td>
+            <td>Action</td>
+            </thead>
+        {% for item in listOfDepts %}
+                <tr>
+                    <td>{{item.id}}</td>
+                    <td>{{item.dname}}</td>
+                    <td>{{item.dcode}}</td>
+                    <td>{{item.dprof}}</td>
+                    <td>
+            <a href="/edit/{{item.id}}">Edit</a>
+            <a href="/delete/{{item.id}}">Delete</a>
+        </td>
+
+                </tr>
+        {% endfor %}
+
+    </table>
+
+</body>
+</html>

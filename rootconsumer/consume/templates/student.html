@@ -1,0 +1,120 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Page</title>
+    <style>
+        #studTable {
+          font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+          border-collapse: collapse;
+          width: 100%;
+        }
+
+        #studTable td, #studTable th {
+          border: 1px solid #ddd;
+          padding: 8px;
+        }
+
+        #studTable tr:nth-child(even){background-color: #f2f2f2;}
+
+        #studTable tr:hover {background-color: #ddd;}
+
+        #studTable th {
+          padding-top: 12px;
+          padding-bottom: 12px;
+          text-align: left;
+          background-color: #4CAF50;
+          color: white;
+        }
+
+
+    </style>
+</head>
+<body>
+
+<h1> Student Page..!</h1>
+
+
+<form action="http://localhost:8001/studSave/" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <label>Stud Id</label>
+    <input name="id" type="text" value="{{studOb.id}}"> <br><br>
+
+    <label>Stud fname</label>
+    <input name="fname" type="text" value="{{studOb.fname}}">
+
+    <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Stud lname</label>
+    <input name="lname" type="text" value="{{studOb.lname}}"> <br><br>
+
+    <label>Stud gender</label>
+    <input name="gender" type="text" value="{{studOb.gender}}">
+
+    <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Stud email</label>
+    <input name="email" type="text" value="{{studOb.email}}"> <br><br>
+
+    <label>Stud contact</label>
+    <input name="contact" type="text" value="{{studOb.contact}}">
+
+    <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Stud age</label>
+    <input name="age" type="text" value="{{studOb.age}}"> <br><br>
+
+    <label>Stud photo</label>
+    <input type="file" name="photo" id="photo"/>
+
+    <label>Stud dept</label>
+    <input name="dept" type="text" value="{{studOb.dept}}"> <br><br>
+
+    <label>Stud subjs</label>
+    <input name="subjs" type="text" value="{{studOb.subjs}}">
+
+    <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Stud website</label>
+    <input name="website" type="text" value="{{studOb.website}}"> <br><br>
+
+    <input name="Submit" type="submit">
+</form>
+
+<table id="studTable">
+    <thead>
+    <td>ID</td>
+    <td>Fname</td>
+    <td>Lname</td>
+    <td>Gender</td>
+    <td>Email</td>
+    <td>Contact</td>
+    <td>Age</td>
+    <td>Photo</td>
+    <td>Dept</td>
+    <td>Subjs</td>
+    <td>Website</td>
+    <td>Action</td>
+    </thead>
+
+    {% for item in listOfStud %}
+    <tr>
+        <td>{{item.id}}</td>
+        <td>{{item.fname}}</td>
+        <td>{{item.lname}}</td>
+        <td>{{item.gender}}</td>
+        <td>{{item.email}}</td>
+        <td>{{item.contact}}</td>
+        <td>{{item.age}}</td>
+        <td>{{item.photo}}</td>
+        <td>{{item.dept}}</td>
+        <td>{{item.subjs}}</td>
+        <td>{{item.website}}</td>
+
+        <td>
+            <a href="/studEdit/{{item.id}}">Edit</a>
+            <a href="/studdelete/{{item.id}}">Delete</a>
+        </td>
+
+    </tr>
+    {% endfor %}
+
+</table>
+
+
+</body>
+</html>
